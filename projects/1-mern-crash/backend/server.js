@@ -8,7 +8,7 @@ const app = express();
 // config json parser
 app.use(express.json());
 // use routes
-app.use(productRoutes);
+app.use("/api/products", productRoutes);
 const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === "production") {
