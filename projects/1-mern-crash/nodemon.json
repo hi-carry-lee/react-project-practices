@@ -1,0 +1,14 @@
+{
+  "watch": ["backend"],
+  "ignore": [
+    "node_modules",
+    "frontend",
+    "src",
+    "public",
+    "dist",
+    "**/node_modules/**",
+    "**/.git/**"
+  ],
+  "ext": "js,json",
+  "verbose": true
+}
