@@ -1,5 +1,5 @@
 // controller for product
-import Product from "../models/product.js";
+import Product from "../models/product.model.js";
 import mongoose from "mongoose";
 
 // get all products

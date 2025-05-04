@@ -1,9 +1,14 @@
 import express from "express";
 import connectDB from "./utils/connect-db.js";
-import productRoutes from "./routes/product.js";
+import productRoutes from "./routes/product.route.js";
 import path from "path";
 
 const app = express();
+
+// used for health check
+app.get("/health", (req, res) => {
+  res.status(200).send("OK");
+});
 
 // config json parser
 app.use(express.json());
