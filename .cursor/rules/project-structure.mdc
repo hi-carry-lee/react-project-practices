@@ -1,0 +1,19 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Common rules for all projects in projects directory
+- only use English, no Chinese;
+- all code in the function in the controllers directory should be wrapped by try catch;
+
+# Project Structure Guide
+
+This monorepo contains multiple projects under the [projects/](mdc:projects) directory. These are all JS fullstack projects, some of them will use Typescript.
+
+- [projects/1-mern-crash/](mdc:projects/1-mern-crash): A MERN stack project with separate frontend (React) and backend (Node.js/Express) codebases.
+- [projects/2-chat-app/](mdc:projects/2-chat-app): A chat application with its own frontend (React) and backend (Node.js/Express) structure.
+
+
+Top-level files like [package.json](mdc:package.json) and [pnpm-workspace.yaml](mdc:pnpm-workspace.yaml) manage dependencies and workspace configuration for the monorepo.
+
