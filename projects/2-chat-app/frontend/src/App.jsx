@@ -6,25 +6,15 @@ import SettingsPage from "./pages/SettingsPage";
 import ProfilePage from "./pages/ProfilePage";
 import Navbar from "./components/Navbar";
 import { useAuthStore } from "./store/useAuthStore";
-import { useEffect } from "react";
-import { Loader } from "lucide-react";
-function App() {
-  const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
-  useEffect(() => {
-    checkAuth();
-  }, []);
+import { Toaster } from "react-hot-toast";
 
-  if (isCheckingAuth && !authUser) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <Loader className="w-10 h-10 animate-spin" />
-      </div>
-    );
-  }
+function App() {
+  const { authUser } = useAuthStore();
 
   return (
     <div>
       <Navbar />
+
       <Routes>
         <Route
           path="/"
@@ -44,6 +34,8 @@ function App() {
           element={authUser ? <ProfilePage /> : <Navigate to="/login" />}
         />
       </Routes>
+
+      <Toaster />
     </div>
   );
 }
