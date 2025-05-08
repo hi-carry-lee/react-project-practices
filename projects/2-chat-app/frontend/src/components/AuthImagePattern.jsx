@@ -1,3 +1,6 @@
+// aspect-square：强制宽高比，使元素保持正方形；
+// animate-pulse: TailWind CSS提供的脉冲式动画效果；
+
 const AuthImagePattern = ({ title, subtitle }) => {
   return (
     <div className="hidden lg:flex items-center justify-center bg-base-200 p-12">
