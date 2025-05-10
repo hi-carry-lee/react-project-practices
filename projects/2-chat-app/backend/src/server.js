@@ -14,12 +14,14 @@ const app = express();
 // add cors middleware
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "http://localhost:5174",
     credentials: true,
   })
 );
 
-app.use(express.json());
+// Express框架的默认限制：100KB
+app.use(express.json({ limit: "5mb" }));
+app.use(express.urlencoded({ limit: "5mb", extended: true }));
 // if we want to use cookies, we need to use cookieParser middleware
 app.use(cookieParser());
 // app.use(fileUpload({ useTempFiles: true }));

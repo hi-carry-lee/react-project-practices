@@ -90,15 +90,14 @@ const logout = async (req, res) => {
 const updateProfile = async (req, res) => {
   try {
     const { avatar } = req.body;
-    console.log("avatar: ", avatar);
-    // const userId = req.user._id;
-    const userId = "6818b6e1585007333cb8ca76";
+    const userId = req.user._id;
+    // const userId = "6818b6e1585007333cb8ca76";
     if (!avatar) {
       return res
         .status(400)
         .json({ success: false, message: "Avatar image is required" });
     }
-    const result = await cloudinary.uploader.upload(avatar, {
+    const result = await cloudinary.v2.uploader.upload(avatar, {
       folder: "avatars",
     });
     const user = await User.findByIdAndUpdate(
@@ -108,9 +107,10 @@ const updateProfile = async (req, res) => {
         // for now, no need to delete the avatar from cloudinary
         // public_id: result.public_id,
       },
-      // new: true is used to return the updated user, by default it returns the old user
-      { new: true },
-      select("-password")
+      {
+        new: true,
+        select: "-password",
+      }
     );
     res.status(200).json({ success: true, data: user });
   } catch (error) {

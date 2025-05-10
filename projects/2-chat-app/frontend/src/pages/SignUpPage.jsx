@@ -3,7 +3,7 @@ import { useAuthStore } from "../store/useAuthStore";
 import { Link } from "react-router-dom";
 import { Mail, Lock, Eye, EyeOff, Loader2, MessageSquare } from "lucide-react";
 import AuthImagePattern from "../components/AuthImagePattern";
-
+import { toast } from "react-hot-toast";
 import { User } from "lucide-react";
 
 const SignUpPage = () => {
@@ -26,17 +26,22 @@ const SignUpPage = () => {
     return true;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validate();
     if (isValid === true) {
-      signup(formData);
+      const res = await signup(formData);
+      console.log("useAuthStore res: ", res);
+      if (res.success) {
+        toast.success("Signup successful");
+      } else {
+        toast.error(res.message);
+      }
     }
   };
 
   return (
-    // 使用calc来计算高度，减去navbar的高度5rem，否则会产生滚动条
-    <div className="h-[calc(100vh-5rem)] grid lg:grid-cols-2">
+    <div className="min-h-screen grid lg:grid-cols-2 ">
       {/* left side */}
       {/* 这个div用来组织整个left Side的布局和样式 */}
       <div className="flex flex-col items-center justify-center p-6 sm:p-12">
@@ -62,7 +67,7 @@ const SignUpPage = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-medium">Full Name</span>
+                <span className="label-text font-medium">Name</span>
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -72,9 +77,9 @@ const SignUpPage = () => {
                   type="text"
                   className={`input input-bordered w-full pl-10`}
                   placeholder="John Doe"
-                  value={formData.fullName}
+                  value={formData.name}
                   onChange={(e) =>
-                    setFormData({ ...formData, fullName: e.target.value })
+                    setFormData({ ...formData, name: e.target.value })
                   }
                 />
               </div>

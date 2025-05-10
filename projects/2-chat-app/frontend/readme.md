@@ -31,7 +31,7 @@
    - if authUser is found, redirect to home page
    - if no authUser and isCheckingAuth is true, show a loading indicator from lucide-react
 
-## Signup andLogin page
+## Signup and Login page
 
 1. create state to store form data
 2. create validate function and submit function
@@ -46,3 +46,14 @@
    create logout function in store
    create navnar, then implememt logout functionality
    create login page, the same state as signup
+
+## Profile page
+
+1. read file from local environment;
+2. use the FileReader api which provide by Browser;
+3. transform the image to string base64 format
+   this is suitable for small image, and it can simplify the operation of backend;
+   base 64 will increase the size compare to original image, and the default limitation of Express is 100KB, so we need to expand the limit of image size to 5MB in the backend;
+4. expand the limit of image size to 5MB in the backend
+5. update the Cloudinary configuration:
+   in the previously, we use the old version of Cloudinary, now we use the new version, so we can upload file to specific folder;

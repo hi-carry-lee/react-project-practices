@@ -7,10 +7,9 @@ const Navbar = () => {
 
   return (
     <header
-      // daisyUI中，base就是主题的颜色，fixed属性是为了让NavBar始终在顶部，防止X轴滚动
-      // fixed暂时不放上去
-      className="border-b border-base-300/80 top-0 
-    backdrop-blur-lg "
+      // daisyUI中，base就是主题的颜色
+      // fixed：元素脱离文档流，所以SignUpPage的min-h-screen才不会产生Y方向滚动条
+      className="border-b border-base-300 fixed w-full top-0 z-40 backdrop-blur-lg bg-base-100/80"
     >
       <div
         // 使用Tailwind的container类，可以自动适配屏幕宽度

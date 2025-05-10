@@ -5,7 +5,7 @@ export const protectRoute = async (req, res, next) => {
   try {
     // before we get token from cookies, we need to make sure that we have used cookieParser middleware in the server.js file
     const token = req.cookies.jwt;
-    console.log("token: ", token);
+    // console.log("token: ", token);
     if (!token) {
       return res.status(401).json({ success: false, message: "Unauthorized" });
     }
