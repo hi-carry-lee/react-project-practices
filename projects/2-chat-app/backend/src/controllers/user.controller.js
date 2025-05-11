@@ -97,7 +97,7 @@ const updateProfile = async (req, res) => {
         .status(400)
         .json({ success: false, message: "Avatar image is required" });
     }
-    const result = await cloudinary.v2.uploader.upload(avatar, {
+    const result = await cloudinary.uploader.upload(avatar, {
       folder: "avatars",
     });
     const user = await User.findByIdAndUpdate(

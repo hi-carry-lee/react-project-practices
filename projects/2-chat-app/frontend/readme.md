@@ -57,3 +57,12 @@
 4. expand the limit of image size to 5MB in the backend
 5. update the Cloudinary configuration:
    in the previously, we use the old version of Cloudinary, now we use the new version, so we can upload file to specific folder;
+
+## Settings page
+
+1. create a theme store to manage the theme state
+2. create a constant files to store the all the themes from Daisy UI
+3. use the theme store to apply the theme state in the App.jsx file
+4. create a settings page
+   iterate the themes and create a button for each theme;
+   using a click event handler to change the theme setter function from the theme store;

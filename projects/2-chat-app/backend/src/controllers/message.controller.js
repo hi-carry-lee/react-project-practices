@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import Message from "../models/message.model.js";
-import cloudinary from "cloudinary";
+import cloudinary from "../lib/cloudinary.js";
+import { getReceiverSocketId, io } from "../lib/socket.js";
 
 export const getUsersForSidebar = async (req, res) => {
   try {
@@ -16,14 +17,14 @@ export const getUsersForSidebar = async (req, res) => {
 
 export const getMessages = async (req, res) => {
   try {
-    const { id: receiverId } = req.params;
-    const loggedInUserId = req.user._id;
+    const { id: userToChatId } = req.params;
+    const myId = req.user._id;
     const messages = await Message.find({
       $or: [
-        { senderId: loggedInUserId, receiverId },
-        { senderId: receiverId, receiverId: loggedInUserId },
+        { senderId: myId, receiverId: userToChatId },
+        { senderId: userToChatId, receiverId: myId },
       ],
-    }).sort({ createdAt: -1 });
+    });
     res.status(200).json({ success: true, data: messages });
   } catch (error) {
     console.log("Error in getMessagesBetweenUsers: ", error.message);
@@ -45,16 +46,22 @@ export const sendMessage = async (req, res) => {
       imageUrl = uploadResponse.secure_url;
     }
 
-    const message = await Message.create({
+    const newMessage = new Message({
       senderId,
       receiverId,
       text,
       image: imageUrl,
     });
 
-    // realtime functinality from here, use socket.io to send the message to the receiver
+    await newMessage.save();
 
-    res.status(201).json({ success: true, data: message });
+    // realtime functinality from here, use socket.io to send the message to the receiver
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
+
+    res.status(201).json({ success: true, data: newMessage });
   } catch (error) {
     console.log("Error in sendMessage: ", error.message);
     res.status(500).json({ success: false, message: "Internal server error" });

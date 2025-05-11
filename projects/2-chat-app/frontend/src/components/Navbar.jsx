@@ -55,6 +55,7 @@ const Navbar = () => {
                   <LogOut className="size-5" />
                   <span className="hidden sm:inline">Logout</span>
                 </button>
+                <div className="text-sm text-zinc-400">{authUser.name}</div>
               </>
             )}
           </div>

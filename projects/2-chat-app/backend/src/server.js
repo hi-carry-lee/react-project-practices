@@ -6,10 +6,10 @@ import connectDB from "./lib/connectDB.js";
 import cookieParser from "cookie-parser";
 // import fileUpload from "express-fileupload";
 import cors from "cors";
+import { app, server } from "./lib/socket.js";
+
 dotenv.config();
 const PORT = process.env.PORT || 5000;
-
-const app = express();
 
 // add cors middleware
 app.use(
@@ -26,9 +26,9 @@ app.use(express.urlencoded({ limit: "5mb", extended: true }));
 app.use(cookieParser());
 // app.use(fileUpload({ useTempFiles: true }));
 app.use("/api/auth", userRoutes);
-app.use("/api/message", messageRoutes);
+app.use("/api/messages", messageRoutes);
 
-app.listen(process.env.PORT, async () => {
+server.listen(process.env.PORT, async () => {
   console.log(`Server is running on port ${PORT}`);
   await connectDB();
 });
