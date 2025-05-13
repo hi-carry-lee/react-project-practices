@@ -21,10 +21,6 @@ const Sidebar = () => {
 
   if (isUsersLoading) return <SidebarSkeleton />;
 
-  console.log("users: ", users);
-  console.log("onlineUsers: ", onlineUsers);
-  console.log("filteredUsers: ", filteredUsers);
-
   return (
     <aside className="h-full w-20 lg:w-72 border-r border-base-300 flex flex-col transition-all duration-200">
       {/* contacts header */}

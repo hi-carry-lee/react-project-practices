@@ -21,9 +21,7 @@ const ChatContainer = () => {
 
   useEffect(() => {
     getMessages(selectedUser._id);
-
     subscribeToMessages();
-
     return () => unsubscribeFromMessages();
   }, [
     selectedUser._id,
@@ -32,10 +30,16 @@ const ChatContainer = () => {
     unsubscribeFromMessages,
   ]);
 
+  // 有新消息时，自动向下滚动以展示新消息
   useEffect(() => {
     if (messageEndRef.current && messages) {
+      // 因为循环中使用ref，它始终指向最后一个对象，所以这里的ref指向的是最近一条消息；
+      // scrollIntoView()方法会计算目标元素相对于可滚动容器的位置，然后调整滚动位置使元素可见：
+      // 如果元素在视图下方：向下滚动
+      // 如果元素在视图上方：向上滚动
       messageEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
+    // 依赖数组是 messages，每当有新消息来，它都会发生变化，因此就会出发这个钩子的执行
   }, [messages]);
 
   if (isMessagesLoading) {
@@ -59,6 +63,7 @@ const ChatContainer = () => {
             className={`chat ${
               message.senderId === authUser._id ? "chat-end" : "chat-start"
             }`}
+            // 在循环中将同一个ref对象应用到多个元素时，它只会保留对最后一个元素的引用
             ref={messageEndRef}
           >
             <div className=" chat-image avatar">

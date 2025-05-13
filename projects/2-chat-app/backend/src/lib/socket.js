@@ -12,6 +12,7 @@ const server = http.createServer(app);
 const userSocketMap = {}; // {userId: socketId}
 
 const connectionsPerIP = new Map(); // IP地址 -> {count: 连接次数, timestamp: 最后连接时间}
+// 如果要在本机测试，需要关闭它，因为它根据IP来控制的
 const MAX_CONNECTIONS_PER_IP = 10; // 每个IP最大允许的连接数
 const RATE_LIMIT_WINDOW = 60000; // 速率限制窗口期(毫秒)
 
@@ -19,6 +20,8 @@ const RATE_LIMIT_WINDOW = 60000; // 速率限制窗口期(毫秒)
 const io = new Server(server, {
   // ===== 新增：增强CORS配置 =====
   cors: {
+    // no need to change the origin, since we will deploy the frontend and backend in the same server
+    // it we want to deploy the frontend and backend in different servers, we need to change the origin to the frontend server's url
     origin:
       process.env.NODE_ENV === "production"
         ? process.env.FRONTEND_URL || "https://yourproductionapp.com"
