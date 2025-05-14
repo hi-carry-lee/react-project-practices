@@ -8,7 +8,9 @@
     "front1": "cd projects/1-mern-crash/frontend && pnpm dev",
     "back1": "cd projects/1-mern-crash/backend && pnpm dev",
     "front2": "cd projects/2-chat-app/frontend && pnpm dev",
-    "back2": "cd projects/2-chat-app/backend && pnpm dev"
+    "back2": "cd projects/2-chat-app/backend && pnpm dev",
+    "front3": "cd projects/3-chat-app/frontend && pnpm dev",
+    "back3": "cd projects/3-chat-app && pnpm dev"
   },
   "keywords": [],
   "author": "",

@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd frontend && pnpm install && pnpm build && cd ../backend && pnpm install",
-    "start": "cd backend && pnpm start"
+    "build": "cd projects/2-chat-app/frontend && pnpm install && pnpm build && cd ../backend && pnpm install",
+    "start": "cd projects/2-chat-app/backend && pnpm start"
   },
   "keywords": [],
   "author": "",
