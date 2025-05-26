@@ -1,17 +1,17 @@
-import useGetConversations from "../../hooks/useGetConversations";
+import useGetContacts from "../../hooks/useGetContacts";
 import { getRandomEmoji } from "../../utils/emojis";
 import Contact from "./Contact";
 
 const Contacts = () => {
-  const { loading, conversations } = useGetConversations();
+  const { loading, contacts } = useGetContacts();
   return (
     <div className="py-2 flex flex-col overflow-auto gap-2">
-      {conversations.map((conversation, idx) => (
+      {contacts.map((contact, idx) => (
         <Contact
-          key={conversation._id}
-          conversation={conversation}
+          key={contact._id}
+          contact={contact}
           emoji={getRandomEmoji()}
-          lastIdx={idx === conversations.length - 1}
+          lastIdx={idx === contacts.length - 1}
         />
       ))}
 

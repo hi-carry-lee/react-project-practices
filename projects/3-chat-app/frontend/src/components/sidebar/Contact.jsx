@@ -1,12 +1,12 @@
 import { useSocketContext } from "../../context/SocketContext";
-import useConversation from "../../zustand/useConversation";
+import useContact from "../../zustand/useContact";
 
-const Contact = ({ conversation, lastIdx, emoji }) => {
-  const { selectedConversation, setSelectedConversation } = useConversation();
+const Contact = ({ contact, lastIdx, emoji }) => {
+  const { selectedContact, setSelectedContact } = useContact();
 
-  const isSelected = selectedConversation?._id === conversation._id;
+  const isSelected = selectedContact?._id === contact._id;
   const { onlineUsers } = useSocketContext();
-  const isOnline = onlineUsers.includes(conversation._id);
+  const isOnline = onlineUsers.includes(contact._id);
 
   return (
     <>
@@ -14,11 +14,11 @@ const Contact = ({ conversation, lastIdx, emoji }) => {
         className={`flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer
 				${isSelected ? "bg-sky-400" : ""}
 			`}
-        onClick={() => setSelectedConversation(conversation)}
+        onClick={() => setSelectedContact(contact)}
       >
         <div className={`avatar ${isOnline ? "online" : ""}`}>
           <div className="w-8 rounded-full">
-            <img src={conversation.profilePic} alt="user avatar" />
+            <img src={contact.profilePic} alt="user avatar" />
           </div>
         </div>
 
@@ -26,7 +26,7 @@ const Contact = ({ conversation, lastIdx, emoji }) => {
           // flex-1 make the div occupy all the available space
           className="flex-1 flex items-center gap-3 justify-between"
         >
-          <p className="text-gray-200 text-sm">{conversation.fullName}</p>
+          <p className="text-gray-200 text-sm">{contact.fullName}</p>
           <span className="text-md">{emoji}</span>
         </div>
       </div>
