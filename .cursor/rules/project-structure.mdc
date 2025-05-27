@@ -9,11 +9,67 @@ alwaysApply: false
 
 # Project Structure Guide
 
-This monorepo contains multiple projects under the [projects/](mdc:projects) directory. These are all JS fullstack projects, some of them will use Typescript.
+This workspace is organized as a monorepo containing multiple full-stack projects, designed to share dependencies and optimize disk space usage.
 
-- [projects/1-mern-crash/](mdc:projects/1-mern-crash): A MERN stack project with separate frontend (React) and backend (Node.js/Express) codebases.
-- [projects/2-chat-app/](mdc:projects/2-chat-app): A chat application with its own frontend (React) and backend (Node.js/Express) structure.
+## Workspace Structure
+- `projects/` - Contains all practice projects
+  - Each project is prefixed with a number (e.g., `1-mern-crash`, `2-chat-app`, `3-chat-app`)
+  - Projects are organized by type and complexity
 
+## Project Types
+The workspace contains three types of projects:
+1. React + Node.js projects
+   - Frontend: React application
+   - Backend: Node.js/Express server
+   - May be in separate directories or combined
+
+2. Next.js projects
+   - Full-stack Next.js applications
+   - Server-side rendering and API routes
+
+3. React Native + Node.js projects
+   - Mobile: React Native application
+   - Backend: Node.js/Express server
+
+## Project Structure
+Each project may follow one of these structures:
+1. Combined Structure:
+```
+project-name/
+├── frontend/     # React/Next.js/React Native frontend
+├── backend/      # Node.js backend
+├── readme.md
+├── package.json
+└── nodemon.json
+```
+
+2. Separate Structure:
+```
+project-name/
+├── client/       # Frontend project
+│   ├── src/
+│   └── package.json
+├── server/       # Backend project
+│   ├── src/
+│   └── package.json
+└── readme.md
+```
+
+## Development Guidelines
+1. Use `pnpm` as the package manager for dependency sharing
+2. Each project is self-contained but shares common dependencies
+3. Backend servers typically run on port 5000
+4. Frontend development servers typically run on port 3000
+5. React Native projects use their default ports
+
+## Getting Started
+1. Install workspace dependencies: `pnpm install`
+2. Navigate to specific project directory
+3. Follow project-specific readme for setup instructions
+4. For new projects:
+   - Create a new directory with number prefix
+   - Choose appropriate project structure
+   - Set up frontend and backend as needed
 
 Top-level files like [package.json](mdc:package.json) and [pnpm-workspace.yaml](mdc:pnpm-workspace.yaml) manage dependencies and workspace configuration for the monorepo.
 

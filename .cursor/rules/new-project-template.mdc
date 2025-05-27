@@ -1,0 +1,97 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# New Project Template Guide
+
+## Project Naming Convention
+1. Use number prefix for project ordering
+2. Use descriptive name after the number
+3. Use kebab-case for the name
+Example: `4-ecommerce-app`, `5-social-network`
+
+## Project Structure Options
+
+### Option 1: Combined Structure
+```
+N-project-name/
+├── frontend/          # React/Next.js/React Native frontend
+│   ├── src/
+│   ├── public/
+│   ├── package.json
+│   └── README.md
+├── backend/           # Node.js backend
+│   ├── src/
+│   ├── package.json
+│   └── README.md
+├── package.json       # Root package.json
+└── README.md         # Project documentation
+```
+
+### Option 2: Separate Structure
+```
+N-project-name/
+├── client/           # Frontend project
+│   ├── src/
+│   ├── public/
+│   ├── package.json
+│   └── README.md
+├── server/           # Backend project
+│   ├── src/
+│   ├── package.json
+│   └── README.md
+└── README.md         # Project documentation
+```
+
+## Setup Steps
+1. Create project directory with number prefix
+2. Choose project structure (combined or separate)
+3. Initialize frontend project:
+   ```bash
+   # For React
+   pnpm create vite frontend --template react-ts
+   
+   # For Next.js
+   pnpm create next-app frontend
+   
+   # For React Native
+   pnpm create expo frontend
+   ```
+
+4. Initialize backend project:
+   ```bash
+   mkdir backend
+   cd backend
+   pnpm init
+   pnpm add express typescript @types/node @types/express
+   ```
+
+5. Update workspace configuration:
+   - Add project to `pnpm-workspace.yaml`
+   - Install shared dependencies
+
+## Required Files
+1. `README.md` with:
+   - Project description
+   - Setup instructions
+   - Development guidelines
+   - Deployment instructions
+
+2. `.gitignore` with:
+   - Node modules
+   - Build outputs
+   - Environment files
+   - IDE files
+
+3. Environment files:
+   - `.env` (gitignored)
+
+## Best Practices
+1. Use TypeScript for both frontend and backend when specify
+2. Set up ESLint and Prettier
+3. Configure proper scripts in package.json
+4. Set up proper environment variables
+5. Document API endpoints
+6. Set up proper testing framework
+

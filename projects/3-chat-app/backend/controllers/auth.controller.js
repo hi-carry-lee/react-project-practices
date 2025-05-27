@@ -92,3 +92,16 @@ export const logout = (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export const updateProfile = async (req, res) => {
+  try {
+    const { fullName } = req.body;
+    const user = await User.findById(req.user._id);
+    user.fullName = fullName;
+    await user.save();
+    res.status(200).json({ message: "Profile updated successfully" });
+  } catch (error) {
+    console.log("Error in updateProfile controller", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};

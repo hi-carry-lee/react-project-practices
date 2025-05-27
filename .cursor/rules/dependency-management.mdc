@@ -1,0 +1,73 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Dependency Management Guide
+
+## Monorepo Structure
+This workspace uses pnpm workspaces to manage dependencies across multiple projects. The workspace configuration is defined in [pnpm-workspace.yaml](mdc:pnpm-workspace.yaml).
+
+## Shared Dependencies
+Common dependencies are shared across projects to:
+1. Reduce disk space usage
+2. Ensure version consistency
+3. Speed up installation
+4. Simplify dependency management
+
+## Dependency Types
+1. Workspace Dependencies
+   - Defined in root `package.json`
+   - Shared across all projects
+   - Common development tools and utilities
+
+2. Project-specific Dependencies
+   - Defined in each project's `package.json`
+   - Specific to project requirements
+   - May include framework-specific packages
+
+## Common Shared Dependencies
+- Development tools
+  - TypeScript
+  - ESLint
+  - Prettier
+  - Jest
+- Common utilities
+  - Lodash
+  - Axios
+  - Date-fns
+- Testing libraries
+  - React Testing Library
+  - Jest
+
+## Best Practices
+1. Add common dependencies to root `package.json`
+2. Use workspace protocol for internal dependencies
+3. Keep project-specific dependencies in their respective `package.json`
+4. Use consistent versions across projects
+5. Document dependency changes in commit messages
+
+## Adding New Dependencies
+1. For shared dependencies:
+   ```bash
+   pnpm add -w package-name
+   ```
+
+2. For project-specific dependencies:
+   ```bash
+   cd projects/project-name
+   pnpm add package-name
+   ```
+
+## Updating Dependencies
+1. Update shared dependencies:
+   ```bash
+   pnpm update -r
+   ```
+
+2. Update specific project dependencies:
+   ```bash
+   cd projects/project-name
+   pnpm update
+   ```
+

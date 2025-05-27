@@ -1,0 +1,44 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Frontend Development Guidelines
+
+## Project Structure
+Each frontend project typically follows this structure:
+- `src/` - Source code directory
+  - `components/` - Reusable React components
+  - `pages/` - Page components
+  - `context/` - React context providers
+  - `hooks/` - Custom React hooks
+  - `utils/` - Utility functions
+  - `styles/` - CSS/SCSS files
+  - `assets/` - Static assets (images, fonts, etc.)
+
+## Component Guidelines
+1. Use functional components with hooks
+2. Follow the single responsibility principle
+3. Keep components small and focused
+4. Use proper prop typing
+5. Implement error boundaries for critical components
+
+## State Management
+1. Use React Context for global state
+2. Implement custom hooks for reusable state logic
+3. Consider using Redux for complex state management
+4. Keep state as local as possible
+
+## Styling
+1. Use CSS modules or styled-components
+2. Follow BEM naming convention
+3. Implement responsive design
+4. Use CSS variables for theming
+
+## Best Practices
+1. Implement proper error handling
+2. Add loading states
+3. Use proper form validation
+4. Implement proper TypeScript types
+5. Write unit tests for critical components
+

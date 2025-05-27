@@ -1,0 +1,45 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Backend Development Guidelines
+
+## Project Structure
+Each backend project typically follows this structure:
+- `src/` or `server/` - Source code directory
+  - `controllers/` - Route controllers
+  - `models/` - Database models
+  - `routes/` - API routes
+  - `middleware/` - Custom middleware
+  - `config/` - Configuration files
+  - `utils/` - Utility functions
+
+## API Design
+1. Follow RESTful principles
+2. Use proper HTTP methods (GET, POST, PUT, DELETE)
+3. Implement proper error handling
+4. Use proper status codes
+5. Document API endpoints
+
+## Database
+1. Use MongoDB for MERN stack projects
+2. Implement proper data validation
+3. Use Mongoose schemas
+4. Implement proper indexing
+5. Handle database errors properly
+
+## Security
+1. Implement proper authentication
+2. Use environment variables for sensitive data
+3. Implement rate limiting
+4. Use proper CORS configuration
+5. Sanitize user input
+
+## Best Practices
+1. Use async/await for asynchronous operations
+2. Implement proper logging
+3. Use proper error handling
+4. Write unit tests
+5. Use TypeScript for type safety
+

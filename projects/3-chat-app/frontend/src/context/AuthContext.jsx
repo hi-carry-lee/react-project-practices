@@ -12,8 +12,13 @@ export const AuthContextProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("chat-user")) || null
   );
 
+  function handleSetAuthUser(user) {
+    setAuthUser(user);
+    localStorage.setItem("chat-user", JSON.stringify(user));
+  }
+
   return (
-    <AuthContext.Provider value={{ authUser, setAuthUser }}>
+    <AuthContext.Provider value={{ authUser, handleSetAuthUser }}>
       {children}
     </AuthContext.Provider>
   );
