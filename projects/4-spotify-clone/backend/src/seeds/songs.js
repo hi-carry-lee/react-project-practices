@@ -154,3 +154,7 @@ const seedSongs = async () => {
 };
 
 seedSongs();
+/*
+在albums.js中已经可以创建songs和albums，所以当前这个文件可以不执行；
+
+*/

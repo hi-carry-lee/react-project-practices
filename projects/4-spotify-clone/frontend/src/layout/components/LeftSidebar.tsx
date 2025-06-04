@@ -24,7 +24,8 @@ const LeftSidebar = () => {
             className={cn(
               buttonVariants({
                 variant: "ghost",
-                className: "w-full justify-start text-white hover:bg-zinc-800",
+                className:
+                  "w-full justify-start text-white hover:bg-zinc-800 hover:text-green-600",
               })
             )}
           >
@@ -39,7 +40,7 @@ const LeftSidebar = () => {
                 buttonVariants({
                   variant: "ghost",
                   className:
-                    "w-full justify-start text-white hover:bg-zinc-800",
+                    "w-full justify-start text-white hover:bg-zinc-800 hover:text-green-600",
                 })
               )}
             >
@@ -72,7 +73,7 @@ const LeftSidebar = () => {
                   <img
                     src={album.imageUrl}
                     alt="Playlist img"
-                    className="size-12 rounded-md flex-shrink-0 object-cover"
+                    className="size-10 rounded-md flex-shrink-0 object-cover"
                   />
 
                   <div className="flex-1 min-w-0 hidden md:block">

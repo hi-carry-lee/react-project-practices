@@ -11,6 +11,7 @@ const Message = ({ message }) => {
   const profilePic = fromMe ? authUser.profilePic : selectedContact?.profilePic;
   const bubbleBgColor = fromMe ? "bg-blue-500" : "";
 
+  // 在index.css中定义了shake动画
   const shakeClass = message.shouldShake ? "shake" : "";
 
   return (

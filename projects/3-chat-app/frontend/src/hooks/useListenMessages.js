@@ -11,6 +11,7 @@ const useListenMessages = () => {
 
   useEffect(() => {
     socket?.on("newMessage", (newMessage) => {
+      // 为新消息添加shake动画，并播放声音，shake动画在index.css中定义
       newMessage.shouldShake = true;
       const sound = new Audio(notificationSound);
       sound.play();
