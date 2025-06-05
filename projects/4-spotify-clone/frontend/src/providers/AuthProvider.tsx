@@ -1,8 +1,18 @@
 import { axiosInstance } from "@/lib/axios";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { useChatStore } from "@/stores/useChatStore";
 import { useAuth } from "@clerk/clerk-react";
 import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 
+/*
+当前组件在 main.tsx中，随着应用启动，会执行以下操作：
+  1. 统一设置Axios请求头中的Authorization字段，以携带Token；
+  2. 在应用启动时，通过clerk提供的hook获取Token
+  3. 检查当前登录用户是否是管理员
+  4. 初始化socket
+  5. 在组件卸载时，断开socket
+*/
 const updateApiToken = (token: string | null) => {
   if (token)
     axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -10,28 +20,34 @@ const updateApiToken = (token: string | null) => {
 };
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const { getToken } = useAuth();
+  const { getToken, userId } = useAuth();
   const [loading, setLoading] = useState(true);
+  const { checkAdminStatus } = useAuthStore();
+  const { initSocket, disconnectSocket } = useChatStore();
 
   useEffect(() => {
     const initAuth = async () => {
       try {
         const token = await getToken();
         updateApiToken(token);
+        if (token) {
+          await checkAdminStatus();
+          // init socket
+          // if (userId) initSocket(userId);
+        }
       } catch (error: unknown) {
-        // TypeScript将catch中的error设计为unknown，正是为了类型安全
         updateApiToken(null);
-        console.log(
-          "Error in auth provider",
-          error instanceof Error ? error.message : error
-        );
+        console.log("Error in auth provider", error);
       } finally {
         setLoading(false);
       }
     };
 
     initAuth();
-  }, [getToken]);
+
+    // clean up
+    return () => disconnectSocket();
+  }, [getToken, userId, checkAdminStatus, initSocket, disconnectSocket]);
 
   if (loading)
     return (

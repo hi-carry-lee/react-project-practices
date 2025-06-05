@@ -26,7 +26,7 @@ const Topbar = () => {
         {isAdmin && (
           <Link
             to={"/admin"}
-            className={cn(buttonVariants({ variant: "outline" }))}
+            className={cn(buttonVariants({ variant: "secondary" }))}
           >
             <LayoutDashboardIcon className="size-4  mr-2" />
             Admin Dashboard
