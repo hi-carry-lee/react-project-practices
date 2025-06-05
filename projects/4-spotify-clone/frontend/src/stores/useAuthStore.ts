@@ -1,6 +1,6 @@
 import { axiosInstance } from "@/lib/axios";
 import { create } from "zustand";
-import { AxiosError } from "axios";
+import { handleAxiosError } from "@/lib/utils";
 
 interface AuthStore {
   isAdmin: boolean;
@@ -22,14 +22,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
       const response = await axiosInstance.get("/admin/check");
       set({ isAdmin: response.data.admin });
     } catch (error: unknown) {
-      let errorMessage = "Failed to check admin status";
-      // ! 使用unknown + 类型守卫解决error的类型问题
-      if (error instanceof AxiosError) {
-        errorMessage = error.response?.data?.message || error.message;
-      } else if (error instanceof Error) {
-        errorMessage = error.message;
-      }
-
+      const errorMessage = handleAxiosError(error);
       set({ isAdmin: false, error: errorMessage });
     } finally {
       set({ isLoading: false });

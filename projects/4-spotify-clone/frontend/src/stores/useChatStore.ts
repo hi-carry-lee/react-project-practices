@@ -2,15 +2,10 @@ import { axiosInstance } from "@/lib/axios";
 import { Message, User } from "@/types";
 import { create } from "zustand";
 import { io, Socket } from "socket.io-client";
-import { AxiosError } from "axios";
-
-// 定义错误响应类型
-interface ErrorResponse {
-  message: string;
-}
+import { handleAxiosError } from "@/lib/utils";
 
 interface ChatStore {
-  users: User[];
+  contacts: User[];
   isLoading: boolean;
   error: string | null;
   socket: Socket;
@@ -37,7 +32,7 @@ const socket = io(baseURL, {
 });
 
 export const useChatStore = create<ChatStore>((set, get) => ({
-  users: [],
+  contacts: [],
   isLoading: false,
   error: null,
   socket: socket,
@@ -52,17 +47,11 @@ export const useChatStore = create<ChatStore>((set, get) => ({
   fetchUsers: async () => {
     set({ isLoading: true, error: null });
     try {
+      // 获取除了当前登录用户之外的，所有用户
       const response = await axiosInstance.get("/users");
-      set({ users: response.data });
+      set({ contacts: response.data });
     } catch (error) {
-      if (error instanceof AxiosError && error.response?.data) {
-        const errorData = error.response.data as ErrorResponse;
-        set({ error: errorData.message || "Failed to fetch users" });
-      } else if (error instanceof Error) {
-        set({ error: error.message });
-      } else {
-        set({ error: "An unknown error occurred" });
-      }
+      set({ error: handleAxiosError(error) });
     } finally {
       set({ isLoading: false });
     }
@@ -144,14 +133,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
       const response = await axiosInstance.get(`/users/messages/${userId}`);
       set({ messages: response.data });
     } catch (error) {
-      if (error instanceof AxiosError && error.response?.data) {
-        const errorData = error.response.data as ErrorResponse;
-        set({ error: errorData.message || "Failed to fetch messages" });
-      } else if (error instanceof Error) {
-        set({ error: error.message });
-      } else {
-        set({ error: "An unknown error occurred" });
-      }
+      set({ error: handleAxiosError(error) });
     } finally {
       set({ isLoading: false });
     }

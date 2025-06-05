@@ -6,6 +6,7 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import LeftSidebar from "./components/LeftSidebar";
+import FriendsActivity from "./components/FriendsActivity";
 const MainLayout = () => {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -50,7 +51,7 @@ const MainLayout = () => {
           maxSize={25} // 最大只能占25%宽度
           collapsedSize={0} // 折叠时完全隐藏
         >
-          Right Side
+          <FriendsActivity />
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>
