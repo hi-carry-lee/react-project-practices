@@ -22,16 +22,13 @@ const AdminPage = () => {
   if (!isAdmin && !isLoading) return <div>Unauthorized</div>;
 
   return (
-    <div
-      className="min-h-screen bg-gradient-to-b from-zinc-900 via-zinc-900
-   to-black text-zinc-100 p-8"
-    >
+    <div className="min-h-screen lg:h-screen bg-gradient-to-b from-zinc-900 via-zinc-900 to-black text-zinc-100 p-8 flex flex-col">
       <Header />
 
       <DashboardStats />
 
-      <Tabs defaultValue="songs" className="space-y-6">
-        <TabsList className="p-1 bg-zinc-800/50">
+      <Tabs defaultValue="songs" className="flex flex-col space-y-6 min-h-0">
+        <TabsList className="p-1 bg-zinc-800/50 w-fit">
           <TabsTrigger
             value="songs"
             className="data-[state=active]:bg-zinc-700"
@@ -48,10 +45,10 @@ const AdminPage = () => {
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="songs">
+        <TabsContent value="songs" className="flex-1 min-h-0">
           <SongsTabContent />
         </TabsContent>
-        <TabsContent value="albums">
+        <TabsContent value="albums" className="flex-1 min-h-0">
           <AlbumsTabContent />
         </TabsContent>
       </Tabs>
