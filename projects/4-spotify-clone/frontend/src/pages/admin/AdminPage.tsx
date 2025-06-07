@@ -22,7 +22,10 @@ const AdminPage = () => {
   if (!isAdmin && !isLoading) return <div>Unauthorized</div>;
 
   return (
-    <div className="min-h-screen lg:h-screen bg-gradient-to-b from-zinc-900 via-zinc-900 to-black text-zinc-100 p-8 flex flex-col">
+    <div
+      // 默认min-h-screen，因为小屏幕尺寸下，需要不固定内容高度，否则会因为DashboardStats变成垂直，而导致song list 看不到了
+      className="min-h-screen md:h-screen bg-gradient-to-b from-zinc-900 via-zinc-900 to-black text-zinc-100 p-8 flex flex-col"
+    >
       <Header />
 
       <DashboardStats />

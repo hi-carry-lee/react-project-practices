@@ -19,6 +19,15 @@ const songSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    // 添加 Cloudinary public_id 字段以便删除文件
+    audioPublicId: {
+      type: String,
+      required: true,
+    },
+    imagePublicId: {
+      type: String,
+      required: true,
+    },
     duration: {
       type: Number,
       required: true,

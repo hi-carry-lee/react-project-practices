@@ -10,9 +10,14 @@ import {
 } from "@/components/ui/table";
 import { useMusicStore } from "@/stores/useMusicStore";
 import { Calendar, Trash2 } from "lucide-react";
+import { useEffect } from "react";
 
 const SongsTable = () => {
-  const { songs, isLoading, error, deleteSong } = useMusicStore();
+  const { songs, fetchSongs, isLoading, error, deleteSong } = useMusicStore();
+
+  useEffect(() => {
+    fetchSongs();
+  }, [fetchSongs]);
 
   if (isLoading) {
     return (
@@ -82,3 +87,8 @@ const SongsTable = () => {
   );
 };
 export default SongsTable;
+
+/*
+这种滚动方案不够好，因为会让Table header 一起滚动
+对于table来说，更好的方案应该是做分页
+*/
