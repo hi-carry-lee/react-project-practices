@@ -3,7 +3,7 @@ import { Message } from "../models/message.model.js";
 
 export const getAllUsers = async (req, res, next) => {
   try {
-    const currentUserId = req.auth.userId;
+    const currentUserId = req.auth().userId;
     // 查询除了当前用户之外的所有用户
     const users = await User.find({ clerkId: { $ne: currentUserId } });
     res.status(200).json(users);
@@ -15,7 +15,7 @@ export const getAllUsers = async (req, res, next) => {
 // get messages between two users
 export const getMessages = async (req, res, next) => {
   try {
-    const myId = req.auth.userId;
+    const myId = req.auth().userId;
     const { userId } = req.params;
 
     const messages = await Message.find({

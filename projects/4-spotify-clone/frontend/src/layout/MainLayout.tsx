@@ -24,10 +24,16 @@ const MainLayout = () => {
   }, []);
 
   return (
-    <div className="h-screen bg-black text-white flex flex-col">
+    <div
+      // 为什么用flex？因为 PlaybackControls 和 Resizable 是垂直布局
+      className="h-screen bg-black text-white flex flex-col"
+    >
       <ResizablePanelGroup
         direction="horizontal"
-        className="flex-1 flex h-full overflow-hidden p-2"
+        // PlaybackControls占据固定高度，使用flex-1，让ResizablePanelGroup占据剩余空间
+        // 不过经过测试，去掉flex-1 h-full overflow-hidden 后，效果相同
+        // className="flex-1 h-full overflow-hidden p-2"
+        className="p-2"
       >
         <AudioPlayer />
         {/* left sidebar */}

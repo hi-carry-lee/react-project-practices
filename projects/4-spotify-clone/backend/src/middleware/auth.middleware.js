@@ -1,8 +1,9 @@
 import { clerkClient } from "@clerk/express";
 
+// !"req.auth()" is deprecated and will be removed in the next major release. Use `req.auth()()` as a function instead.
 // 路由保护：认证检查
 export const protectRoute = async (req, res, next) => {
-  if (!req.auth.userId) {
+  if (!req.auth().userId) {
     return res
       .status(401)
       .json({ message: "Unauthorized - you must be logged in" });
@@ -14,12 +15,12 @@ export const protectRoute = async (req, res, next) => {
 export const requireAdmin = async (req, res, next) => {
   try {
     // todo：这是AI提的建议，如果JWT中已有角色信息，优先使用（避免API调用）
-    if (req.auth.claims?.role === "admin") {
+    if (req.auth().claims?.role === "admin") {
       return next();
     }
 
     // 如果JWT中没有角色信息，则从数据库中获取
-    const currentUser = await clerkClient.users.getUser(req.auth.userId);
+    const currentUser = await clerkClient.users.getUser(req.auth().userId);
     const isAdmin =
       process.env.ADMIN_EMAIL === currentUser.primaryEmailAddress?.emailAddress;
 

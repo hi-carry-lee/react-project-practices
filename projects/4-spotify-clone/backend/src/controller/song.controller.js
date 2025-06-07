@@ -11,12 +11,13 @@ export const getAllSongs = async (req, res, next) => {
   }
 };
 
+// 这里通过随机的方式，模拟featured songs
 export const getFeaturedSongs = async (req, res, next) => {
   try {
     // fetch 6 random songs using mongodb's aggregation pipeline
     const songs = await Song.aggregate([
       {
-        // $sample:从集合中随机选择指定数量的文档
+        // $sample: 这个操作符表示从集合中随机选择指定数量的文档
         $sample: { size: 6 },
       },
       {
@@ -37,6 +38,7 @@ export const getFeaturedSongs = async (req, res, next) => {
   }
 };
 
+// 这里通过随机的方式，模拟为你推荐
 export const getMadeForYouSongs = async (req, res, next) => {
   try {
     const songs = await Song.aggregate([
@@ -62,6 +64,7 @@ export const getMadeForYouSongs = async (req, res, next) => {
   }
 };
 
+// 这里通过随机的方式，模拟趋势歌曲
 export const getTrendingSongs = async (req, res, next) => {
   try {
     const songs = await Song.aggregate([

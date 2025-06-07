@@ -5,6 +5,7 @@ import AuthCallbackPage from "./pages/auth-callback/AuthCallbackPage";
 import MainLayout from "./layout/MainLayout";
 import ChatPage from "./pages/chat/ChatPage";
 import AlbumPage from "./pages/album/AlbumPage";
+import AdminPage from "./pages/admin/AdminPage";
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         }
       />
       <Route path="/auth-callback" element={<AuthCallbackPage />} />
+      <Route path="/admin" element={<AdminPage />} />
+
       {/* 实现布局共享，当路由访问内部的页面时，会使用MainLayout布局，同时渲染内部的组件 */}
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
