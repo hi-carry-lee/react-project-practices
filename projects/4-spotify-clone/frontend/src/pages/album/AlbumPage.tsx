@@ -12,29 +12,37 @@ const AlbumPage = () => {
   const { fetchAlbumById, currentAlbum, isLoading } = useMusicStore();
   const { currentSong, isPlaying, playAlbum, togglePlay } = usePlayerStore();
 
+  // 组件加载后，获取专辑信息
   useEffect(() => {
     if (albumId) fetchAlbumById(albumId);
   }, [fetchAlbumById, albumId]);
 
   if (isLoading) return null;
 
+  // album 播放按钮的控制器
   const handlePlayAlbum = () => {
     if (!currentAlbum) return;
 
     const isCurrentAlbumPlaying = currentAlbum?.songs.some(
       (song) => song._id === currentSong?._id
     );
-    if (isCurrentAlbumPlaying) togglePlay();
-    else {
+    if (isCurrentAlbumPlaying) {
+      togglePlay();
+    } else {
       // start playing the album from the beginning
       playAlbum(currentAlbum?.songs, 0);
     }
   };
 
+  // Album中歌曲的控制器
   const handlePlaySong = (index: number) => {
     if (!currentAlbum) return;
 
-    playAlbum(currentAlbum?.songs, index);
+    if (isPlaying) {
+      togglePlay();
+    } else {
+      playAlbum(currentAlbum?.songs, index);
+    }
   };
 
   return (

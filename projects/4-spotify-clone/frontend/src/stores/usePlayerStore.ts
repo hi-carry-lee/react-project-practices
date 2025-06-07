@@ -50,6 +50,7 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
   currentSong: null,
   isPlaying: false,
   queue: [],
+  // 为什么 currentIndex 是 -1？
   currentIndex: -1,
 
   initializeQueue: (songs: Song[]) => {
@@ -60,6 +61,7 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
     });
   },
 
+  // 播放专辑：更新对应state
   playAlbum: (songs: Song[], startIndex = 0) => {
     if (songs.length === 0) return;
 
@@ -74,6 +76,7 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
     });
   },
 
+  // 播放某个歌曲：更新对应state
   setCurrentSong: (song: Song | null) => {
     if (!song) return;
 

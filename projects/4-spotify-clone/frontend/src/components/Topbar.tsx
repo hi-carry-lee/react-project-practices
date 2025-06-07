@@ -26,7 +26,13 @@ const Topbar = () => {
         {isAdmin && (
           <Link
             to={"/admin"}
-            className={cn(buttonVariants({ variant: "secondary" }))}
+            className={cn(
+              buttonVariants({ variant: "outline" }),
+              "hover:bg-zinc-700 dark:hover:bg-zinc-700", // 深色主题悬停
+              "hover:bg-zinc-200 dark:hover:bg-zinc-700", // 浅色主题悬停为浅灰
+              "border-zinc-200 dark:border-zinc-700", // 边框颜色
+              "text-zinc-900 dark:text-zinc-100" // 文字颜色
+            )}
           >
             <LayoutDashboardIcon className="size-4  mr-2" />
             Admin Dashboard
