@@ -24,7 +24,7 @@ interface ChatStore {
 }
 
 const baseURL =
-  import.meta.env.MODE === "development" ? "http://localhost:5000" : "/";
+  import.meta.env.MODE === "development" ? "http://localhost:5001" : "/";
 
 const socket = io(baseURL, {
   autoConnect: false,

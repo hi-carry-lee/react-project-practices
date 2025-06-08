@@ -33,7 +33,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         if (token) {
           await checkAdminStatus();
           // init socket
-          // if (userId) initSocket(userId);
+          if (userId) initSocket(userId);
         }
       } catch (error: unknown) {
         console.log("Error in auth provider", error);

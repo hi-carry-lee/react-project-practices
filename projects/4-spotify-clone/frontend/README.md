@@ -1,54 +1,35 @@
-# React + TypeScript + Vite
+# 功能及实现方案
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 播放器
 
-Currently, two official plugins are available:
+1. 实现播放器的两种方式：通过 audio 元素手动实现，使用三方库，这里使用的是手动实现
+2. 全局只有一个 audio 元素，在没有指定 control 属性时，该元素不可见，我们也需要它可见；
+3. 创建 AudioPlayer 组件，通过 useRef 获取 audio 元素，通过 useEffect 为 audio 元素绑定控制事件；
+4. 使用 zustand 创建 usePlayerStore ，在这里实现播放相关的逻辑；
+5. PlaybackControls 组件，用来实现播放控制按钮
+   通过 document.querySelector 获取 audio 元素，然后可以控制 audio 元素的属性（比如播放时间等等）；
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# websocket 通信
 
-## Expanding the ESLint configuration
+1. 前端
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+   1. 创建 socket 连接
+   2. 监听事件
+   3. 发送事件
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+2. 后端
+   1. 需要作 token 认证
+   2. 创建 socket 连接，将该 socket 连接和用户 id 绑定存储；
+   3. 监听事件、单独发送事件、群发事件；
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+# 用 Icon 代替 input
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. 创建 input 元素，添加 hidden 属性；
+2. 创建一个 ref，关联到该 input 元素中
+3. 添加一个 ICON 组件，为它绑定点击事件，点击时，通过 ref 来为隐藏的 input 元素赋值
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+# 布局
+
+1. 使用 Shadcn 的 Resizable 实现动态弹性布局：所划分的模块，都可以动态调整尺寸；
+
+#
