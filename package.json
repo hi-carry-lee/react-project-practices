@@ -12,7 +12,9 @@
     "front3": "cd projects/3-chat-app/frontend && pnpm dev",
     "back3": "cd projects/3-chat-app && pnpm dev",
     "front4": "cd projects/4-spotify-clone/frontend && pnpm dev",
-    "back4": "cd projects/4-spotify-clone/backend && pnpm dev"
+    "back4": "cd projects/4-spotify-clone/backend && pnpm dev",
+    "front5": "cd projects/5-twitter-clone/frontend && pnpm dev",
+    "back5": "cd projects/5-twitter-clone/backend && pnpm dev"
   },
   "keywords": [],
   "author": "",
