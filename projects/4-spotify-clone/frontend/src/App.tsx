@@ -21,6 +21,7 @@ function App() {
       <Route path="/admin" element={<AdminPage />} />
 
       {/* 实现布局共享，当路由访问内部的页面时，会使用MainLayout布局，同时渲染内部的组件 */}
+      {/* 这种嵌套路由写法不推荐，应该是：父路由使用path属性，子路由使用相对路径，即path属性中没有slash */}
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/chat" element={<ChatPage />} />
