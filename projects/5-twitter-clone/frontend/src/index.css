@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* whitout the following code, when switch between pages between those that have scrollbar and those that don't, the layout will shift left and right */
+/* by forcing the scrollbar to be always present, we prevent the layout shift */
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable; /* This is the key property */
+}
+
+/* Optional: Style the scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* this is a key property to prevent the layout shift */
+body {
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
