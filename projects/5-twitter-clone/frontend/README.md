@@ -1,8 +1,5 @@
-# React + Vite
+# record
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. add some property in index.css to fix the layout shift issue
+   when notification page doesn't have scroll bar and other page has, then switch between them the whole layout will shift, since the scroll bar occupy a tiny width;
+   by adding some property to force the scroll bar appear in notification page, it fix the problem
