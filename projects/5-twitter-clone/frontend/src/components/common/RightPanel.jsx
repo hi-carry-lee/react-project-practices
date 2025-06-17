@@ -79,36 +79,6 @@ const RightPanel = () => {
             ))}
         </div>
       </div>
-
-      <div className='mt-auto bg-[#16181C] p-4 rounded-md sticky bottom-32'>
-        <h2 className='font-bold text-xl mb-2 text-center'>Trending News</h2>
-        <ul className='flex flex-col gap-4'>
-          <li className='flex items-center'>
-            <Link
-              to='/news/1'
-              className='hover:bg-[#3d4044] transition-all duration-200 rounded-full px-2 py-1'
-            >
-              Trending news 1
-            </Link>
-          </li>
-          <li className='flex items-center'>
-            <Link
-              to='/news/1'
-              className='hover:bg-[#3d4044] transition-all duration-200 rounded-full px-2 py-1'
-            >
-              Trending news 1
-            </Link>
-          </li>
-          <li className='flex items-center'>
-            <Link
-              to='/news/1'
-              className='hover:bg-[#3d4044] transition-all duration-200 rounded-full px-2 py-1'
-            >
-              Trending news 1
-            </Link>
-          </li>
-        </ul>
-      </div>
     </div>
   );
 };
