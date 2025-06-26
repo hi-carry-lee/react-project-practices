@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Import your practice page components (you'll create these)
 import HomePage from "./components/home.tsx";
 import Navbar from "./components/navbar.tsx";
-import { practicePages } from "./data.ts";
+import { practicePages } from "./routes.ts";
 
 // Main App component
 const App: React.FC = () => {

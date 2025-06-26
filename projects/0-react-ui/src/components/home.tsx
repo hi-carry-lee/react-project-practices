@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { practicePages } from "../data";
+import { practicePages } from "../routes";
 import Header from "./header";
 import Footer from "./footer";
 
