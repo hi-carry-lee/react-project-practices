@@ -28,7 +28,7 @@ const QuizePage = () => {
 
   return (
     <div className="bg-orange-50">
-      <div className="h-screen mx-auto max-w-2xl flex items-center justify-center ">
+      <div className="mx-auto max-w-2xl flex items-center justify-center ">
         {stage === 0 && <QuizStart setStage={setStage} />}
         {stage === 1 && (
           <Quiz
