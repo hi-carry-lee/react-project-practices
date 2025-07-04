@@ -1,6 +1,7 @@
 import type { RouteLink } from ".";
 import QuizHome from "./pages/1-quize/quiz-home";
 import ColorPalette from "./pages/2-color-pallete/color-pallete";
+import DragDropPage from "./pages/3-drag-drop/drop-drop-home";
 
 // Define your practice pages
 export const practicePages: RouteLink[] = [
@@ -15,5 +16,11 @@ export const practicePages: RouteLink[] = [
     name: "Color Pallete",
     component: ColorPalette,
     description: "Generate colors for you life",
+  },
+  {
+    path: "/3-drag-drop",
+    name: "Drag Drop",
+    component: DragDropPage,
+    description: "Simple Kanban board",
   },
 ];
