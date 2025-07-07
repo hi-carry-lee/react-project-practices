@@ -2,12 +2,14 @@
 
 import KanbanPage from "./kanban";
 import KanbanDndkit from "./kanban-dndkit";
+import KanbanNewPage from "./optimization/kanban-new";
 
 const DragDropPage = () => {
   return (
     <div className="bg-blue-50 h-screen flex flex-col gap-4 justify-center items-center">
       <KanbanPage />
       <KanbanDndkit />
+      <KanbanNewPage />
     </div>
   );
 };

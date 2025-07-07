@@ -34,7 +34,7 @@ function Card({
   isLastOver: boolean;
 }) {
   return (
-    <div className="bg-neutral-200 p-4 rounded-xl shadow-lg h-96 transition-all flex flex-col">
+    <div className="bg-neutral-200 p-4 rounded-xl shadow-lg h-48 transition-all flex flex-col">
       <h2 className="text-center text-2xl text-slate-500 font-bold">{title}</h2>
       <div className="mt-4 flex-1 space-y-2 flex flex-col">
         {items.map((item) => (

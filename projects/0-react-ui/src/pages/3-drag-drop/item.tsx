@@ -26,7 +26,7 @@ function Item({
 }) {
   return (
     <div
-      className={`text-center bg-white p-4 rounded-xl shadow-lg mb-2 cursor-move transition-all ${
+      className={`text-center bg-white px-4 py-3 rounded-xl shadow-lg mb-2 cursor-move transition-all ${
         isOver ? "outline outline-blue-400 outline-dashed" : ""
       }`}
       draggable
