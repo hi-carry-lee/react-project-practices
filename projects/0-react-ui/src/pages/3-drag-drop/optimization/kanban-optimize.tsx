@@ -83,10 +83,27 @@ export default function KanbanNewPage() {
     // this is DOM API, true means deep copy(including children elements);
     // it's used to create a preview element before droping element;
     const ghost = (e.target as HTMLElement).cloneNode(true) as HTMLElement;
+
+    // ! preserve the original width by getting the computed width before positioning off-screen
+    const originalWidth = (e.target as HTMLElement).offsetWidth;
     // why using this style: we just need it during drag-drop, we don't want other elements being afftected, so give it 'top:-9999px'
-    ghost.style.cssText = "position:absolute;top:-9999px;opacity:.5;";
+    ghost.style.cssText = `position:absolute;top:-9999px;opacity:.5;width:${originalWidth}px;`;
     document.body.appendChild(ghost);
-    e.dataTransfer.setDragImage(ghost, 0, 0);
+
+    // ! set up the position of the preview element and the cursor
+    // Calculate the offset for better cursor positioning
+    // * Option 1: Center the cursor on the ghost element
+    const offsetX = originalWidth / 2;
+    const offsetY = (e.target as HTMLElement).offsetHeight / 2;
+    e.dataTransfer.setDragImage(ghost, offsetX, offsetY);
+
+    // * Option 2: Use the actual mouse position relative to the element (uncomment if you prefer this)
+    // const rect = (e.target as HTMLElement).getBoundingClientRect();
+    // const offsetX = e.clientX - rect.left;
+    // const offsetY = e.clientY - rect.top;
+
+    // original code
+    // e.dataTransfer.setDragImage(ghost, 0, 0);
     // preview end
 
     // used to remove clone element, setTimeout(0) means it execute after setDragImage

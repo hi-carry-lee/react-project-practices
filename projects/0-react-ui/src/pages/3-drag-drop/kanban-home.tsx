@@ -2,7 +2,7 @@
 
 import KanbanPage from "./kanban";
 import KanbanDndkit from "./kanban-dndkit";
-import KanbanNewPage from "./optimization/kanban-new";
+import KanbanNewPage from "./optimization/kanban-optimize";
 
 const DragDropPage = () => {
   return (

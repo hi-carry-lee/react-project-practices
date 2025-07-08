@@ -1,6 +1,6 @@
 /* Column.tsx */
 import type { DragEvent } from "react";
-import type { List } from "./kanban-new";
+import type { List } from "./kanban-optimize";
 
 interface Props {
   list: List;
