@@ -1,0 +1,31 @@
+const Balance = () => {
+  return (
+    <div className="w-full bg-gradient-to-br from-lime-200 via-lime-400 to-lime-600 mt-8 p-6 rounded-2xl space-y-6">
+      <h2 className="text-center text-xl font-semibold text-gray-600">
+        Your Balance
+      </h2>
+      <p className="text-center text-5xl font-bold">$33.00</p>
+      <div className="flex justify-center items-center gap-6 w-full">
+        <Card title="Income" amount={1233.0} />
+        <Card title="Expenses" amount={-1200.0} />
+      </div>
+    </div>
+  );
+};
+
+export default Balance;
+
+const Card = ({ title, amount }: { title: string; amount: number }) => {
+  return (
+    <div
+      className={`bg-white text-center rounded-2xl w-full px-8 py-6 space-y-4 ${
+        amount > 0 ? "text-green-600" : "text-red-500"
+      }`}
+    >
+      <h3 className=" text-lg">{title}</h3>
+      <p className="text-3xl font-bold">
+        {amount < 0 && "-"}${Math.abs(amount)}
+      </p>
+    </div>
+  );
+};

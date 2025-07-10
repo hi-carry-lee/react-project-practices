@@ -2,6 +2,7 @@ import type { RouteLink } from ".";
 import QuizHome from "./pages/1-quize/quiz-home";
 import ColorPalette from "./pages/2-color-pallete/color-pallete";
 import DragDropPage from "./pages/3-drag-drop/kanban-home";
+import ExpenseTracker from "./pages/4-expense-tracker/expense-tracker";
 
 // Define your practice pages
 export const practicePages: RouteLink[] = [
@@ -22,5 +23,11 @@ export const practicePages: RouteLink[] = [
     name: "Drag Drop",
     component: DragDropPage,
     description: "Simple Kanban board",
+  },
+  {
+    path: "/4-expense-tracker",
+    name: "Expense Tracker",
+    component: ExpenseTracker,
+    description: "Track your every expense",
   },
 ];
