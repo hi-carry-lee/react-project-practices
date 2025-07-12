@@ -1,1 +1,57 @@
 @import "tailwindcss";
+
+/* Custom scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Sets the width of the entire scrollbar track */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background color of the scrollbar track (the "rail") */
+  border-radius: 4px; /* Rounds the corners of the track */
+}
+
+/* 滚动条滑块 */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the draggable scroll handle */
+  border-radius: 4px; /* Rounds the corners of the thumb */
+}
+
+/* 滚动条滑块悬停时，设置一个较深的颜色 */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* 隐藏滚动条上下两个按钮 */
+.custom-scrollbar::-webkit-scrollbar-button {
+  display: none;
+}
+/* 
+another way to hide the scrollbar arrows, add scrollbar-thin class to the container
+@layer utilities {
+  .scrollbar-hide-arrows::-webkit-scrollbar-button {
+    display: none;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 rounded hover:bg-gray-500;
+  }
+} */
+
+@layer utilities {
+  .scrollbar-minimal::-webkit-scrollbar {
+    width: 8px; /* Makes it thinner than default */
+  }
+
+  .scrollbar-minimal::-webkit-scrollbar-button {
+    display: none; /* Removes arrows */
+  }
+}

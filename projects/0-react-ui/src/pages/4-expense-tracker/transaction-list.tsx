@@ -1,18 +1,20 @@
-import type { Transaction } from "./useTrackerStore";
+import { type Transaction, useTrackStore } from "./useTrackerStore";
 
 const TransactionList = ({ transactions }: { transactions: Transaction[] }) => {
   return (
-    <div className="h-full p-4">
+    <div className=" p-4">
       <h2 className="text-2xl font-md">Transactions</h2>
-      <div className="space-y-2 overflow-auto p-2">
+      <ul className="space-y-2 overflow-y-auto max-h-[500px] p-2 custom-scrollbar">
         {transactions.map((transaction) => (
-          <Transaction
-            key={transaction.id}
-            description={transaction.description}
-            amount={transaction.amount}
-          />
+          <li key={transaction.id}>
+            <Transaction
+              id={transaction.id}
+              description={transaction.description}
+              amount={transaction.amount}
+            />
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };
@@ -20,13 +22,19 @@ const TransactionList = ({ transactions }: { transactions: Transaction[] }) => {
 export default TransactionList;
 
 const Transaction = ({
+  id,
   description,
   amount,
 }: {
+  id: number;
   description: string;
   amount: number;
 }) => {
   const isExpense = amount < 0;
+  const { removeTransaction } = useTrackStore();
+  const handleDelete = () => {
+    removeTransaction(id);
+  };
   return (
     <div
       // rounded-xl形成了特色右边框
@@ -40,6 +48,7 @@ const Transaction = ({
           {isExpense && "-"}${Math.abs(amount)}
         </span>
         <span
+          onClick={handleDelete}
           className="
     text-red-500 font-semibold transition-colors duration-300 p-1 rounded-sm
     opacity-0 pointer-events-none
